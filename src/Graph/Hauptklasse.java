@@ -15,11 +15,15 @@ public class Hauptklasse {
 		Filereader reader = new Filereader();
 		loadtandurl loadurl = new loadtandurl();
 		createChart createChart = new createChart();
+		Durchschnitt durchschnitt = new Durchschnitt();
 		
 		pathset.setPath();
 		reader.Reader();
 		loadurl.loadtimeurl();
 		createChart.creatChart();
+		createChart.SavePieChart();
+		createChart.SaveBarChart();
+		durchschnitt.durchschnitt();
 		
 	}
 }

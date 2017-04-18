@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Pathsetter {
 
 	private static String pfad;
+	private static String pfadjpg;
 
 	/* Aufnahme des Dateipfades
 	 * 
@@ -16,7 +17,6 @@ public class Pathsetter {
 		Scanner pfadinput = new Scanner(System.in);
 		System.out.println("Pfad der Datei: ");
 		pfad = pfadinput.nextLine();
-		pfadinput.close();
 	}
 	
 	/* Rückgabe des Dateipfades
@@ -27,5 +27,14 @@ public class Pathsetter {
 	 */
 	public String getPath(){
 		return pfad;
+	}
+	public void Kopierpfad(){
+		Scanner pfadinput2 = new Scanner(System.in);
+		System.out.println("Wo soll der Graph gespeichert werden: ");
+		pfadjpg = pfadinput2.nextLine();
+		pfadinput2.close();
+	}
+	public String getPfadJpg(){
+		return pfadjpg;
 	}
 }
