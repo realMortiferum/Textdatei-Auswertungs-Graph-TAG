@@ -4,6 +4,11 @@ import java.io.IOException;
 
 public class Hauptklasse {
 
+	/* Aufrufen der Klassen -> Ablaufregelung 
+	 * 
+	 * @author realMortiferum
+	 * @date 2017/04/18
+	 */
 	public static void main(String[] args) throws IOException{
 		
 		Pathsetter pathset = new Pathsetter();
