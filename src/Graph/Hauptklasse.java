@@ -2,6 +2,10 @@ package Graph;
 
 import java.io.IOException;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 public class Hauptklasse {
 
 	/* Aufrufen der Klassen -> Ablaufregelung 
@@ -17,6 +21,21 @@ public class Hauptklasse {
 		createChart createChart = new createChart();
 		Durchschnitt durchschnitt = new Durchschnitt();
 		
+		JFrame Hauptmenue = new JFrame("Result Tree Analyzer");
+		Hauptmenue.setSize(1000,500);
+		Hauptmenue.add(new JLabel("Auswahl der Result Tree Datei:"));
+		Hauptmenue.setVisible(true);
+		
+		JDialog sicher = new JDialog();
+		sicher.setTitle("Bestätigung");
+		sicher.setSize(400,400);
+		sicher.setModal(true);
+		sicher.add(new JLabel("Sind sie sicher, dass sie die Datei hier speichern wollen?"));
+		sicher.setVisible(true);
+
+
+		
+		
 		pathset.setPath();
 		reader.Reader();
 		loadurl.loadtimeurl();
@@ -24,6 +43,7 @@ public class Hauptklasse {
 		createChart.SavePieChart();
 		createChart.SaveBarChart();
 		durchschnitt.durchschnitt();
+		
 		
 	}
 }
