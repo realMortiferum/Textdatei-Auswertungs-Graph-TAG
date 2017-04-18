@@ -16,6 +16,11 @@ public class createChart {
 	private static List<String> url = new ArrayList<String>();
 	private int linenum;
 	
+	/* Erstellen eines Kreis- und Balken-diagramm
+	 * 
+	 * @author realMortiferum
+	 * @date 2017/04/18
+	 */
 	public void creatChart(){
 		
 		loadtandurl loadurl = new loadtandurl();

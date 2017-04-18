@@ -6,6 +6,11 @@ public class Pathsetter {
 
 	private static String pfad;
 
+	/* Aufnahme des Dateipfades
+	 * 
+	 * @author realMortiferum
+	 * @date 2017/04/18
+	 */
 	public void setPath() {
 
 		Scanner pfadinput = new Scanner(System.in);
@@ -14,6 +19,12 @@ public class Pathsetter {
 		pfadinput.close();
 	}
 	
+	/* Rückgabe des Dateipfades
+	 * 
+	 * @return String
+	 * @author realMortiferum
+	 * @date 2017/04/18
+	 */
 	public String getPath(){
 		return pfad;
 	}
