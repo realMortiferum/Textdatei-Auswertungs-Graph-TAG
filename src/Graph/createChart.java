@@ -64,6 +64,9 @@ public class createChart {
 	public void SavePieChart() throws IOException {
 		Hauptklasse main = new Hauptklasse();
 		pathjpg = main.getSavePfad();
+		if( pathjpg.substring(pathjpg.length()-4,pathjpg.length()).equals(".jpg") == false){
+			pathjpg = pathjpg + ".jpg";
+		}
 		pathjpg = pathjpg.substring(0, pathjpg.indexOf(".")) + "-Pie-Chart"
 				+ pathjpg.substring(pathjpg.indexOf("."), pathjpg.length());
 		ChartUtilities.saveChartAsJPEG(new File(pathjpg), chart, 1920, 1080);
@@ -72,6 +75,9 @@ public class createChart {
 	public void SaveBarChart() throws IOException {
 		Hauptklasse main = new Hauptklasse();
 		pathjpg = main.getSavePfad();
+		if( pathjpg.substring(pathjpg.length()-4,pathjpg.length()).equals(".jpg") == false){
+			pathjpg = pathjpg + ".jpg";
+		}
 		pathjpg = pathjpg.substring(0, pathjpg.indexOf(".")) + "-Bar-Chart"
 				+ pathjpg.substring(pathjpg.indexOf("."), pathjpg.length());
 
