@@ -7,6 +7,7 @@ public class Durchschnitt {
 	
 	private static List<String> loadtime = new ArrayList<String>();
 	private int d;
+	private static int durchschnitt;
 
 	public void durchschnitt(){
 		
@@ -20,8 +21,9 @@ public class Durchschnitt {
 		for(int c = 0; c < linenumm-1; c++){
 			d = d + Integer.parseInt(loadtime.get(c));
 		}
-		int durchschnitt = d/linenumm;
-		System.out.println("Der Durchschnitt ist: " + durchschnitt + " ms");
-		
+		durchschnitt = d/linenumm;		
+	}
+	public int getDurchschnitt(){
+		return durchschnitt;
 	}
 }

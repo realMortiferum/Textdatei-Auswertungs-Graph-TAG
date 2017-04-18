@@ -11,36 +11,42 @@ public class Filereader {
 	private String pfad;
 	private int linenum;
 	private static List<String> content = new ArrayList<String>();
-	
-	/* Einlesen des Dateiinhaltes, welcher in einer Liste (content)gespeichert wird
+
+	/*
+	 * Einlesen des Dateiinhaltes, welcher in einer Liste (content)gespeichert
+	 * wird
 	 * 
 	 * @author realMortiferum
+	 * 
 	 * @date 2017/04/18
 	 */
-	public void Reader() throws IOException{
-		Pathsetter pathset = new Pathsetter();
+	public void Reader() throws IOException {
+		Hauptklasse main = new Hauptklasse();
 		Linenumberreader linenumread = new Linenumberreader();
-		
-		pfad = pathset.getPath();
+
+		pfad = main.getPfad();
 		linenumread.linereader();
 		linenum = linenumread.getLinenum();
-		
+
 		FileReader fileread = new FileReader(pfad);
 		BufferedReader buffread = new BufferedReader(fileread);
-		
-		for(int c = 0;c < linenum; c++){
+
+		for (int c = 0; c < linenum; c++) {
 			content.add(buffread.readLine());
 		}
 		buffread.close();
 	}
-	
-	/* Rückgabe der Contentliste
+
+	/*
+	 * Rückgabe der Contentliste
 	 * 
 	 * @return List
+	 * 
 	 * @author realMortiferum
+	 * 
 	 * @date 2017/04/18
 	 */
-	public List<String> getContent(){
+	public List<String> getContent() {
 		return content;
 	}
 }

@@ -51,9 +51,6 @@ public class createChart {
 			dataset.setValue(Integer.parseInt(loadtime.get(c)), "Zeit", substring);
 		}
 
-		// JFreeChart chart = ChartFactory.createPieChart("Ladezeitverteilung",
-		// data, true, true, false);
-
 		ChartFrame frame = new ChartFrame("Ladezeitverteilung v 0.1", chart);
 		frame.pack();
 		frame.setVisible(true);
@@ -65,21 +62,19 @@ public class createChart {
 	}
 
 	public void SavePieChart() throws IOException {
-		Pathsetter pathset = new Pathsetter();
-		pathset.Kopierpfad();
-		pathjpg = pathset.getPfadJpg();
-		pathjpg = pathjpg.substring(0, pathjpg.indexOf(".")) + "-Pie-Chart" + pathjpg.substring(pathjpg.indexOf("."),pathjpg.length());
+		Hauptklasse main = new Hauptklasse();
+		pathjpg = main.getSavePfad();
+		pathjpg = pathjpg.substring(0, pathjpg.indexOf(".")) + "-Pie-Chart"
+				+ pathjpg.substring(pathjpg.indexOf("."), pathjpg.length());
 		ChartUtilities.saveChartAsJPEG(new File(pathjpg), chart, 1920, 1080);
 	}
 
 	public void SaveBarChart() throws IOException {
-		Pathsetter pathset = new Pathsetter();
-		if (pathjpg == null) {
-			pathset.Kopierpfad();
-		}
-		pathjpg = pathset.getPfadJpg();
-		pathjpg = pathjpg.substring(0, pathjpg.indexOf(".")) + "-Bar-Chart" + pathjpg.substring(pathjpg.indexOf("."),pathjpg.length());
-		
+		Hauptklasse main = new Hauptklasse();
+		pathjpg = main.getSavePfad();
+		pathjpg = pathjpg.substring(0, pathjpg.indexOf(".")) + "-Bar-Chart"
+				+ pathjpg.substring(pathjpg.indexOf("."), pathjpg.length());
+
 		ChartUtilities.saveChartAsJPEG(new File(pathjpg), lineChart, 1920, 1080);
 	}
 }
