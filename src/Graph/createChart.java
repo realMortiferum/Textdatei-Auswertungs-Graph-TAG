@@ -199,7 +199,18 @@ public class createChart {
 		loadtime = loadurl.getloadtime();
 		
 		int a = linenum/highestThread;
-		System.out.println(a);
+		
+		
+		/*
+		 * -> die url und loadtimeliste ist sortiert nach den threads
+		 *    die anzahl der einträge der jeweiligen threads in der url/loadt. liste gibt a an
+		 *    so kann in der theorie ein dialog erstellt werden, welcher nach dem graphen für thread 1 
+		 *    fragt ob man sich den graphen für die werte von thread 2 anschauen will
+		 *    sollte dies der fall sein so erstellt er den gleichen graphen neu aber zählt diesmal 
+		 *    die listen von der n-ten darstellung * a für (c = n*a, c<c+a, c++) ab und gibt den neuen graph aus
+		 *    
+		 * 
+		 */
 		
 		
 		

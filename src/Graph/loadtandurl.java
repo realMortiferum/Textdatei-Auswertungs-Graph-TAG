@@ -75,20 +75,24 @@ public class loadtandurl {
 		content = fileread.getSplittedThreads();
 		linenum = linenumread.getLinenum();
 
-		for (int c = 1; c < linenum; c++) {
-			String Test = content.get(c);
-
-			String[] myStrings = Test.split(",");
-			String load = myStrings[1];
-			String threadString = myStrings[5];
-			String urlString = myStrings[13];
-
+		for (int c = 0; c < linenum-1; c++) {
+			
+			String urlString = content.get(c).substring(Math.max(content.get(c).length() - 5, 0));
+			urlString = urlString.substring(urlString.indexOf("/") + 1);
+			urlString = urlString.substring(0, urlString.indexOf("/"));
+			
+			String loadString = content.get(c).substring(0, content.get(c).indexOf("S"));
+			
+			String threadString = content.get(c).substring(0,content.get(c).indexOf("h"));
+			threadString = threadString.substring(threadString.indexOf("-") + 1);
+            			
 			thread.add(threadString);
-			loadtime.add(load);
+			loadtime.add(loadString);
 			url.add(urlString);
+
 		}
 	}
-	
+
 	/**
 	 * Rückgabe der Url-liste
 	 * 
@@ -104,6 +108,7 @@ public class loadtandurl {
 
 	/**
 	 * Rückgabe der Url-Liste des zweiten Result Trees
+	 * 
 	 * @return List
 	 */
 	public List<String> getSecondurl() {
@@ -125,6 +130,7 @@ public class loadtandurl {
 
 	/**
 	 * Rückgabe der Ladezeit des zweiten Result Trees
+	 * 
 	 * @return List
 	 */
 	public List<String> getSecondloadtime() {
