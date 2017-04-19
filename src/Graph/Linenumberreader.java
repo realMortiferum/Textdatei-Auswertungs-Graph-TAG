@@ -37,6 +37,7 @@ public class Linenumberreader {
 		linenumm2 = lnr.getLineNumber();
 		lnr.close();
 	}
+
 	/*
 	 * Rückgabe der Zeilenanzahl
 	 * 
@@ -50,7 +51,7 @@ public class Linenumberreader {
 		return linenumm;
 	}
 
-	public int getSecondLinenum(){
+	public int getSecondLinenum() {
 		return linenumm2;
 	}
 }

@@ -56,6 +56,7 @@ public class Filereader {
 		}
 		buffread.close();
 	}
+
 	/*
 	 * Rückgabe der Contentliste
 	 * 
@@ -68,6 +69,7 @@ public class Filereader {
 	public List<String> getContent() {
 		return content;
 	}
+
 	public List<String> getSecondContent() {
 		return secondcontent;
 	}
