@@ -9,9 +9,11 @@ import java.util.List;
 public class Filereader {
 
 	private String pfad;
+	private String pfad2;
 	private int linenum;
+	private int secondlinenum;
 	private static List<String> content = new ArrayList<String>();
-	private static List<String> content2 = new ArrayList<String>();
+	private static List<String> secondcontent = new ArrayList<String>();
 
 	/*
 	 * Einlesen des Dateiinhaltes, welcher in einer Liste (content)gespeichert
@@ -38,6 +40,22 @@ public class Filereader {
 		buffread.close();
 	}
 
+	public void SecondReader() throws IOException {
+		Hauptklasse main = new Hauptklasse();
+		Linenumberreader linenumread = new Linenumberreader();
+
+		pfad2 = main.getPfad2();
+		linenumread.Secondlinereader();
+		secondlinenum = linenumread.getSecondLinenum();
+
+		FileReader fileread = new FileReader(pfad2);
+		BufferedReader buffread = new BufferedReader(fileread);
+
+		for (int c = 0; c < secondlinenum; c++) {
+			secondcontent.add(buffread.readLine());
+		}
+		buffread.close();
+	}
 	/*
 	 * Rückgabe der Contentliste
 	 * 
@@ -50,7 +68,7 @@ public class Filereader {
 	public List<String> getContent() {
 		return content;
 	}
-	public List<String> getContent2() {
-		return content2;
+	public List<String> getSecondContent() {
+		return secondcontent;
 	}
 }
