@@ -44,6 +44,9 @@ public class loadtandurl {
 		}
 	}
 
+	/**
+	 * Herausfiltern der Ladezeit und URL des zweiten Result Trees
+	 */
 	public void Secondloadtimeurl() {
 
 		Filereader fileread = new Filereader();
@@ -64,6 +67,28 @@ public class loadtandurl {
 		}
 	}
 
+	public void loadtimeurlsplitted() {
+
+		Filereader fileread = new Filereader();
+		Linenumberreader linenumread = new Linenumberreader();
+
+		content = fileread.getSplittedThreads();
+		linenum = linenumread.getLinenum();
+
+		for (int c = 1; c < linenum; c++) {
+			String Test = content.get(c);
+
+			String[] myStrings = Test.split(",");
+			String load = myStrings[1];
+			String threadString = myStrings[5];
+			String urlString = myStrings[13];
+
+			thread.add(threadString);
+			loadtime.add(load);
+			url.add(urlString);
+		}
+	}
+	
 	/**
 	 * Rückgabe der Url-liste
 	 * 
@@ -77,6 +102,10 @@ public class loadtandurl {
 		return url;
 	}
 
+	/**
+	 * Rückgabe der Url-Liste des zweiten Result Trees
+	 * @return List
+	 */
 	public List<String> getSecondurl() {
 		return secondurl;
 	}
@@ -94,6 +123,10 @@ public class loadtandurl {
 		return loadtime;
 	}
 
+	/**
+	 * Rückgabe der Ladezeit des zweiten Result Trees
+	 * @return List
+	 */
 	public List<String> getSecondloadtime() {
 		return secondloadtime;
 	}
