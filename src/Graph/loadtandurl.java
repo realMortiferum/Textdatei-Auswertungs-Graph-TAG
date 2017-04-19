@@ -40,6 +40,7 @@ public class loadtandurl {
 			url.add(urlString);
 		}
 	}
+
 	public void Secondloadtimeurl() {
 
 		Filereader fileread = new Filereader();
@@ -72,10 +73,10 @@ public class loadtandurl {
 	public List<String> geturl() {
 		return url;
 	}
+
 	public List<String> getSecondurl() {
 		return secondurl;
 	}
-
 
 	/*
 	 * Rückgabe der Ladezeit-liste
@@ -89,6 +90,7 @@ public class loadtandurl {
 	public List<String> getloadtime() {
 		return loadtime;
 	}
+
 	public List<String> getSecondloadtime() {
 		return secondloadtime;
 	}

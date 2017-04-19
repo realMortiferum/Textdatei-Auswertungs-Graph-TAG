@@ -101,6 +101,10 @@ public class createChart {
 
 	}
 
+	/*
+	 * Speichern des Kreisdiagrammes
+	 * 
+	 */
 	public void SavePieChart() throws IOException {
 		Hauptklasse main = new Hauptklasse();
 		pathjpg = main.getSavePfad();
@@ -112,6 +116,10 @@ public class createChart {
 		ChartUtilities.saveChartAsJPEG(new File(pathjpg), chart, 1920, 1080);
 	}
 
+	/*
+	 * Speichern des Balkendiagrammes
+	 * 
+	 */
 	public void SaveBarChart() throws IOException {
 		Hauptklasse main = new Hauptklasse();
 		pathjpg = main.getSavePfad();
