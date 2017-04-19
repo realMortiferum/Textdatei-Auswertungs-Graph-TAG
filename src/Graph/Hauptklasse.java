@@ -1,7 +1,6 @@
 package Graph;
 
 import java.io.IOException;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
@@ -27,7 +26,7 @@ public class Hauptklasse {
 		Filereader reader = new Filereader();
 		loadtandurl loadurl = new loadtandurl();
 		createChart createChart = new createChart();
-		Durchschnitt durchschnitt = new Durchschnitt();
+		//Durchschnitt durchschnitt = new Durchschnitt();
 
 		ChooseResultTree();
 		reader.Reader();

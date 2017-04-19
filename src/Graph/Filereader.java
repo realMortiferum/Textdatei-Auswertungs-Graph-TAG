@@ -39,7 +39,6 @@ public class Filereader {
 		}
 		buffread.close();
 	}
-
 	public void SecondReader() throws IOException {
 		Hauptklasse main = new Hauptklasse();
 		Linenumberreader linenumread = new Linenumberreader();
@@ -56,8 +55,8 @@ public class Filereader {
 		}
 		buffread.close();
 	}
-	/*
-	 * Rückgabe der Contentliste
+	
+    /* Rückgabe der Contentliste
 	 * 
 	 * @return List
 	 * 

@@ -28,7 +28,6 @@ public class Linenumberreader {
 		linenumm = lnr.getLineNumber();
 		lnr.close();
 	}
-
 	public void Secondlinereader() throws IOException {
 		Hauptklasse main = new Hauptklasse();
 		path2 = main.getPfad2();
@@ -37,8 +36,8 @@ public class Linenumberreader {
 		linenumm2 = lnr.getLineNumber();
 		lnr.close();
 	}
-	/*
-	 * Rückgabe der Zeilenanzahl
+		
+ /* Rückgabe der Zeilenanzahl
 	 * 
 	 * @return String
 	 * 
@@ -49,7 +48,6 @@ public class Linenumberreader {
 	public int getLinenum() {
 		return linenumm;
 	}
-
 	public int getSecondLinenum(){
 		return linenumm2;
 	}
