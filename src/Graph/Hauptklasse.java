@@ -83,7 +83,7 @@ public class Hauptklasse {
 
 	public static int Compare2Trees() {
 		a = 0;
-		if (JOptionPane.showConfirmDialog(null, "Wollen sie einen zweiten Result Tree vergleichen?", "Vergleich",
+		if (JOptionPane.showConfirmDialog(null, "Wollen sie einen zweiten Result Tree vergleichen?"+"\n Achtung! Werte, welche nur einer der Trees besitzen werden ignoriert!", "Vergleich",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 		    return a = a+1;
 		} else {
