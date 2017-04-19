@@ -11,15 +11,16 @@ public class loadtandurl {
 	private static List<String> secondloadtime = new ArrayList<String>();
 	private static List<String> url = new ArrayList<String>();
 	private static List<String> secondurl = new ArrayList<String>();
+	private static List<String> thread = new ArrayList<String>();
 	private int linenum;
 	private int secondlinenum;
 
-	/*
+	/**
 	 * Herausfiltern der Ladezeit und der URL durch Kommasplit
 	 * 
 	 * @author realMortiferum
 	 * 
-	 * @date 2017/04/18
+	 * 
 	 */
 	public void loadtimeurl() {
 
@@ -34,8 +35,10 @@ public class loadtandurl {
 
 			String[] myStrings = Test.split(",");
 			String load = myStrings[1];
+			String threadString = myStrings[5];
 			String urlString = myStrings[13];
 
+			thread.add(threadString);
 			loadtime.add(load);
 			url.add(urlString);
 		}
@@ -61,14 +64,14 @@ public class loadtandurl {
 		}
 	}
 
-	/*
+	/**
 	 * Rückgabe der Url-liste
 	 * 
 	 * @return List
 	 * 
 	 * @author realMortiferum
 	 * 
-	 * @date 2017/04/18
+	 * 
 	 */
 	public List<String> geturl() {
 		return url;
@@ -78,14 +81,14 @@ public class loadtandurl {
 		return secondurl;
 	}
 
-	/*
+	/**
 	 * Rückgabe der Ladezeit-liste
 	 * 
 	 * @return List
 	 * 
 	 * @author realMortiferum
 	 * 
-	 * @date 2017/04/18
+	 * 
 	 */
 	public List<String> getloadtime() {
 		return loadtime;
@@ -93,5 +96,14 @@ public class loadtandurl {
 
 	public List<String> getSecondloadtime() {
 		return secondloadtime;
+	}
+
+	/**
+	 * Threadnummer wird weitergegeben
+	 * 
+	 * @return List
+	 */
+	public List<String> getThread() {
+		return thread;
 	}
 }

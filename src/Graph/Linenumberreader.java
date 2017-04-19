@@ -12,12 +12,12 @@ public class Linenumberreader {
 	private static int linenumm;
 	private static int linenumm2;
 
-	/*
+	/**
 	 * Zeilenlänge der Datei herausfinden
 	 * 
 	 * @author realMortiferum
+	 * @exception IOException wenn die Datei nicht eingelesen werden kann
 	 * 
-	 * @date 2017/04/18
 	 */
 	public void linereader() throws IOException {
 		Hauptklasse main = new Hauptklasse();
@@ -38,14 +38,14 @@ public class Linenumberreader {
 		lnr.close();
 	}
 
-	/*
+	/**
 	 * Rückgabe der Zeilenanzahl
 	 * 
 	 * @return String
 	 * 
 	 * @author realMortiferum
 	 * 
-	 * @date 2017/04/18
+	 * 
 	 */
 	public int getLinenum() {
 		return linenumm;

@@ -14,12 +14,12 @@ public class Hauptklasse {
 	private static int a;
 	private static int b;
 
-	/*
-	 * Aufrufen der Klassen -> Ablaufregelung
+	/**
+	 * Aufrufen der Klassen zur Ablaufregelung
 	 * 
 	 * @author realMortiferum
-	 * 
-	 * @date 2017/04/18
+	 * @param  args the user input
+	 * @exception IOException Wenn die Dateien nicht eingelesen oder geschrieben werden können
 	 */
 	public static void main(String[] args) throws IOException {
 
@@ -44,7 +44,7 @@ public class Hauptklasse {
 
 	}
 
-	/*
+	/**
 	 * JFileChooser zur Auswahl der zu analysierenden Datei
 	 * 
 	 */
@@ -58,7 +58,7 @@ public class Hauptklasse {
 		}
 	}
 
-	/*
+	/**
 	 * JFileChooser zum auswählen einer zweiten zu vergleichenden Datei
 	 * 
 	 */
@@ -72,7 +72,7 @@ public class Hauptklasse {
 		}
 	}
 
-	/*
+	/**
 	 * JFileChooser zum auswählen des Speicherortes der Graphen
 	 * 
 	 */
@@ -85,7 +85,7 @@ public class Hauptklasse {
 
 	}
 
-	/*
+	/**
 	 * JOptionPaneDialog um zu fragen ob eine zweite Datei mit der ersten
 	 * verglichen werden soll
 	 * 
@@ -103,10 +103,10 @@ public class Hauptklasse {
 		}
 	}
 
-	/*
+	/**
 	 * JOptionPaneDialog um zu fragen ob die Graphen gespeichert werden sollen
 	 * 
-	 * @return int
+	 * @return Integer
 	 */
 	public static int SaveFileDialog() {
 		b = 0;
@@ -118,7 +118,7 @@ public class Hauptklasse {
 		}
 	}
 
-	/*
+	/**
 	 * Rückgabe des ersten Dateipfades
 	 * 
 	 * @return String
@@ -127,7 +127,7 @@ public class Hauptklasse {
 		return pfad;
 	}
 
-	/*
+	/**
 	 * Rückgabe des zweiten Dateipfades
 	 * 
 	 * @return String
@@ -136,7 +136,7 @@ public class Hauptklasse {
 		return pfad2;
 	}
 
-	/*
+	/**
 	 * Rückgabe des Speicherpfades
 	 * 
 	 * @return String
