@@ -59,7 +59,7 @@ public class createChart {
 		frame2.pack();
 		frame2.setVisible(true);
 
-	}
+	}	
 
 	public void SavePieChart() throws IOException {
 		Hauptklasse main = new Hauptklasse();

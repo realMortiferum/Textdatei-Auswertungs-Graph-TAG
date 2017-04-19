@@ -11,6 +11,7 @@ public class Filereader {
 	private String pfad;
 	private int linenum;
 	private static List<String> content = new ArrayList<String>();
+	private static List<String> content2 = new ArrayList<String>();
 
 	/*
 	 * Einlesen des Dateiinhaltes, welcher in einer Liste (content)gespeichert
@@ -48,5 +49,8 @@ public class Filereader {
 	 */
 	public List<String> getContent() {
 		return content;
+	}
+	public List<String> getContent2() {
+		return content2;
 	}
 }
