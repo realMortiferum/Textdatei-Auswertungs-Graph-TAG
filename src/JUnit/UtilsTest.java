@@ -79,7 +79,11 @@ public class UtilsTest {
 		for(int c = 0; c < numget; c++){
 			final Utils ut = new Utils();
 			String method = getName.get(c);
-			ut.methode(2);
+			if(getType.get(c).equals("class java.lang.Integer")){
+			ut.method(2);
+			} else if (getType.get(c).equals("void"){
+			ut.method("Test");	
+			}
 		}
 	}
 	
