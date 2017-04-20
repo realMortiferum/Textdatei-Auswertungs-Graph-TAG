@@ -14,6 +14,9 @@ public class loadtandurl {
 	private static List<String> thread = new ArrayList<String>();
 	private int linenum;
 	private int secondlinenum;
+	private static int loadvalue;
+	private static int threadvalue;
+	private static int urlvalue;
 
 	/**
 	 * Herausfiltern der Ladezeit und der URL durch Kommasplit
@@ -26,17 +29,21 @@ public class loadtandurl {
 
 		Filereader fileread = new Filereader();
 		Linenumberreader linenumread = new Linenumberreader();
+		Hauptklasse main = new Hauptklasse();
 
 		content = fileread.getContent();
 		linenum = linenumread.getLinenum();
+		loadvalue = main.getLoadValue();
+		threadvalue = main.getThreadValue();
+		urlvalue = main.getUrlValue();
 
 		for (int c = 1; c < linenum; c++) {
 			String Test = content.get(c);
 
 			String[] myStrings = Test.split(",");
-			String load = myStrings[1];
-			String threadString = myStrings[5];
-			String urlString = myStrings[13];
+			String load = myStrings[loadvalue];
+			String threadString = myStrings[threadvalue];
+			String urlString = myStrings[urlvalue];
 
 			thread.add(threadString);
 			loadtime.add(load);

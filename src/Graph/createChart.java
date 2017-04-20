@@ -14,6 +14,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.chart.ChartUtilities;
 
 public class createChart {
@@ -23,11 +25,16 @@ public class createChart {
 	private static List<String> url = new ArrayList<String>();
 	private static List<String> secondurl = new ArrayList<String>();
 	private static List<String> threadlist = new ArrayList<String>();
+	private static List<String> idsortedurl = new ArrayList<String>();
+	private static List<String> idsortedload = new ArrayList<String>();
 	private static List<Integer> threadint = new ArrayList<Integer>();
 	private static DefaultPieDataset data = new DefaultPieDataset();
 	private static DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+	private static XYSeriesCollection xydataset = new XYSeriesCollection();
 	private static JFreeChart chart = ChartFactory.createPieChart("Ladezeitverteilung", data, false, true, false);
 	private static JFreeChart lineChart = ChartFactory.createBarChart("Ladezeit in ms", "ID", "Ladezeit", dataset,
+			PlotOrientation.VERTICAL, true, true, false);
+	private static JFreeChart timeChart = ChartFactory.createXYLineChart("Ladezeit", "ID", "Ladezeit", xydataset,
 			PlotOrientation.VERTICAL, true, true, false);
 	private static String pathjpg;
 	private static int linenum;
@@ -58,28 +65,35 @@ public class createChart {
 		if (Hauptklasse.Compare2Trees() == 1) {
 			createCompareChart();
 		} else {
-			for (int c = 0; c < linenum - 1; c++) {
+			if (Hauptklasse.DontCompareThreads() == 0) {
 
-				String substring = url.get(c).substring(Math.max(url.get(c).length() - 4, 0));
-				substring = substring.substring(substring.indexOf("/") + 1);
-				substring = substring.substring(0, substring.indexOf("/"));
+				DontCompare();
 
-				String thread = threadlist.get(c).substring(Math.max(threadlist.get(c).length() - 4, 0));
-				thread = thread.substring(thread.indexOf("-") + 1);
-				loadtimetotal = loadtimetotal + Integer.parseInt(loadtime.get(c));
+			} else {
+				for (int c = 0; c < linenum - 1; c++) {
 
-				data.setValue("Thread: " + thread + " ID:" + substring + " Ladezeit gesamt: " + loadtime.get(c) + "ms",
-						Integer.parseInt(loadtime.get(c)));
-				dataset.setValue(Integer.parseInt(loadtime.get(c)), "Thread: " + thread, substring);
+					String substring = url.get(c).substring(Math.max(url.get(c).length() - 4, 0));
+					substring = substring.substring(substring.indexOf("/") + 1);
+					substring = substring.substring(0, substring.indexOf("/"));
+
+					String thread = threadlist.get(c).substring(Math.max(threadlist.get(c).length() - 4, 0));
+					thread = thread.substring(thread.indexOf("-") + 1);
+					loadtimetotal = loadtimetotal + Integer.parseInt(loadtime.get(c));
+
+					data.setValue(
+							"Thread: " + thread + " ID:" + substring + " Ladezeit gesamt: " + loadtime.get(c) + "ms",
+							Integer.parseInt(loadtime.get(c)));
+					dataset.setValue(Integer.parseInt(loadtime.get(c)), "Thread: " + thread, substring);
+				}
+
+				ChartFrame frame = new ChartFrame("Ladezeitverteilung v 0.1", chart);
+				frame.pack();
+				frame.setVisible(true);
+
+				ChartFrame frame2 = new ChartFrame("Ladezeit v 0.1", lineChart);
+				frame2.pack();
+				frame2.setVisible(true);
 			}
-
-			ChartFrame frame = new ChartFrame("Ladezeitverteilung v 0.1", chart);
-			frame.pack();
-			frame.setVisible(true);
-
-			ChartFrame frame2 = new ChartFrame("Ladezeit v 0.1", lineChart);
-			frame2.pack();
-			frame2.setVisible(true);
 		}
 
 	}
@@ -92,6 +106,7 @@ public class createChart {
 	 *                wenn die Datei nicht eingelesen werden kann
 	 */
 	public void createCompareChart() throws IOException {
+
 		loadtandurl loadurl = new loadtandurl();
 		Linenumberreader linenumm = new Linenumberreader();
 		Filereader read = new Filereader();
@@ -122,30 +137,97 @@ public class createChart {
 			multipleThreadCharDialog();
 			if (b == 1) {
 				multipleThreadChar();
+			} else {
+
+				for (int c = 0; c < finallinenum - 1; c++) {
+
+					String secondsubstring = secondurl.get(c).substring(Math.max(secondurl.get(c).length() - 4, 0));
+					secondsubstring = secondsubstring.substring(secondsubstring.indexOf("/") + 1);
+					secondsubstring = secondsubstring.substring(0, secondsubstring.indexOf("/"));
+
+					String substring = url.get(c).substring(Math.max(url.get(c).length() - 4, 0));
+					substring = substring.substring(substring.indexOf("/") + 1);
+					substring = substring.substring(0, substring.indexOf("/"));
+
+					String thread = threadlist.get(c).substring(Math.max(threadlist.get(c).length() - 4, 0));
+					thread = thread.substring(thread.indexOf("-") + 1);
+
+					dataset.setValue(Integer.parseInt(loadtime.get(c)), "Erster Result Tree", substring);
+					dataset.setValue(Integer.parseInt(secondloadtime.get(c)), "Zweiter Result Tree", substring);
+				}
+
+				ChartFrame frame2 = new ChartFrame("Ladezeit v 0.1", lineChart);
+				frame2.pack();
+				frame2.setVisible(true);
 			}
+		}
+	}
+
+	/**
+	 * Vergleicht die Threads nicht miteinander und sortiert sie nach Wunsch
+	 */
+	public void DontCompare() {
+
+		if (Hauptklasse.SortIDs() == 1) {
+
+			int highid = highestid();
+
+			for (int r = 0; r < highid + 1; r++) {
+
+				for (int d = 0; d < linenum - 1; d++) {
+
+					String substring = url.get(d).substring(Math.max(url.get(d).length() - 4, 0));
+					substring = substring.substring(substring.indexOf("/") + 1);
+					substring = substring.substring(0, substring.indexOf("/"));
+
+					if (Integer.parseInt(substring) == r) {
+						idsortedurl.add(substring);
+						idsortedload.add(loadtime.get(d));
+					}
+				}
+			}
+
+			for (int c = 0; c < linenum - 1; c++) {
+
+				String substring = idsortedurl.get(c);
+
+				data.setValue(" ID:" + substring + " Ladezeit gesamt: " + idsortedload.get(c) + "ms",
+						Integer.parseInt(idsortedload.get(c)));
+				dataset.setValue(Integer.parseInt(idsortedload.get(c)), "Result Tree", substring);
+			}
+
+			ChartFrame frame = new ChartFrame("Ladezeitverteilung v 0.1", chart);
+			frame.pack();
+			frame.setVisible(true);
+
+			ChartFrame frame2 = new ChartFrame("Ladezeit v 0.1", lineChart);
+			frame2.pack();
+			frame2.setVisible(true);
+
 		} else {
 
-			for (int c = 0; c < finallinenum - 1; c++) {
-
-				String secondsubstring = secondurl.get(c).substring(Math.max(secondurl.get(c).length() - 4, 0));
-				secondsubstring = secondsubstring.substring(secondsubstring.indexOf("/") + 1);
-				secondsubstring = secondsubstring.substring(0, secondsubstring.indexOf("/"));
+			for (int c = 0; c < linenum - 1; c++) {
 
 				String substring = url.get(c).substring(Math.max(url.get(c).length() - 4, 0));
 				substring = substring.substring(substring.indexOf("/") + 1);
 				substring = substring.substring(0, substring.indexOf("/"));
 
-				String thread = threadlist.get(c).substring(Math.max(threadlist.get(c).length() - 4, 0));
-				thread = thread.substring(thread.indexOf("-") + 1);
+				loadtimetotal = loadtimetotal + Integer.parseInt(loadtime.get(c));
 
-				dataset.setValue(Integer.parseInt(loadtime.get(c)), "Erster Result Tree", substring);
-				dataset.setValue(Integer.parseInt(secondloadtime.get(c)), "Zweiter Result Tree", substring);
+				data.setValue(" ID:" + substring + " Ladezeit gesamt: " + loadtime.get(c) + "ms",
+						Integer.parseInt(loadtime.get(c)));
+				dataset.setValue(Integer.parseInt(loadtime.get(c)), "Result Tree", substring);
 			}
+
+			ChartFrame frame = new ChartFrame("Ladezeitverteilung v 0.1", chart);
+			frame.pack();
+			frame.setVisible(true);
 
 			ChartFrame frame2 = new ChartFrame("Ladezeit v 0.1", lineChart);
 			frame2.pack();
 			frame2.setVisible(true);
 		}
+
 	}
 
 	/**
@@ -184,6 +266,26 @@ public class createChart {
 	}
 
 	/**
+	 * Ermittelt die höchste ID
+	 * 
+	 * @return Integer
+	 */
+	public int highestid() {
+		int id = 0;
+		for (int c = 0; c < linenum - 1; c++) {
+
+			String substring = url.get(c).substring(Math.max(url.get(c).length() - 4, 0));
+			substring = substring.substring(substring.indexOf("/") + 1);
+			substring = substring.substring(0, substring.indexOf("/"));
+
+			if (Integer.parseInt(substring) > id) {
+				id = Integer.parseInt(substring);
+			}
+		}
+		return id;
+	}
+
+	/**
 	 * Erstellt X-Graphen wenn X-die Anzahl der Threads ist
 	 * 
 	 * @throws IOException
@@ -197,24 +299,46 @@ public class createChart {
 		loadurl.loadtimeurlsplitted();
 		url = loadurl.geturl();
 		loadtime = loadurl.getloadtime();
-		
-		int a = linenum/highestThread;
-		
-		
+		secondurl = loadurl.getSecondurl();
+		secondloadtime = loadurl.getSecondloadtime();
+
+		XYSeries thread_xy_data = new XYSeries("Result Tree 1 ");
+		XYSeries thread2_xy_data = new XYSeries("Result Tree 2 ");
+
+		for (int d = 0; d < linenum - 1; d++) {
+
+			String substring = url.get(d).substring(Math.max(url.get(d).length() - 4, 0));
+			substring = substring.substring(substring.indexOf("/") + 1);
+			substring = substring.substring(0, substring.indexOf("/"));
+
+			String substring2 = secondurl.get(d).substring(Math.max(url.get(d).length() - 4, 0));
+			substring2 = substring2.substring(substring2.indexOf("/") + 1);
+			substring2 = substring2.substring(0, substring2.indexOf("/"));
+
+			thread_xy_data.add(Integer.parseInt(substring), Integer.parseInt(loadtime.get(d)));
+			thread2_xy_data.add(Integer.parseInt(substring), Integer.parseInt(secondloadtime.get(d)));
+
+		}
+
+		xydataset.addSeries(thread_xy_data);
+		xydataset.addSeries(thread2_xy_data);
+
+		ChartFrame frame3 = new ChartFrame("Ladezeit v 0.1", timeChart);
+		frame3.pack();
+		frame3.setVisible(true);
+
 		/*
-		 * -> die url und loadtimeliste ist sortiert nach den threads
-		 *    die anzahl der einträge der jeweiligen threads in der url/loadt. liste gibt a an
-		 *    so kann in der theorie ein dialog erstellt werden, welcher nach dem graphen für thread 1 
-		 *    fragt ob man sich den graphen für die werte von thread 2 anschauen will
-		 *    sollte dies der fall sein so erstellt er den gleichen graphen neu aber zählt diesmal 
-		 *    die listen von der n-ten darstellung * a für (c = n*a, c<c+a, c++) ab und gibt den neuen graph aus
-		 *    
+		 * -> die url und loadtimeliste ist sortiert nach den threads die anzahl
+		 * der einträge der jeweiligen threads in der url/loadt. liste gibt a an
+		 * so kann in der theorie ein dialog erstellt werden, welcher nach dem
+		 * graphen für thread 1 fragt ob man sich den graphen für die werte von
+		 * thread 2 anschauen will sollte dies der fall sein so erstellt er den
+		 * gleichen graphen neu aber zählt diesmal die listen von der n-ten
+		 * darstellung * a für (c = n*a, c<c+a, c++) ab und gibt den neuen graph
+		 * aus
+		 * 
 		 * 
 		 */
-		
-		
-		
-		
 
 	}
 
@@ -236,7 +360,7 @@ public class createChart {
 		}
 	}
 
-	public int gethighestThread(){
+	public int gethighestThread() {
 		return highestThread;
 	}
 }
