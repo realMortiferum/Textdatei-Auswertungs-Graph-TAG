@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
-public class UtilsTest {
+public class GetSetTest {
 
 	static int numget;
 	static int numset;
@@ -128,6 +128,8 @@ public class UtilsTest {
 						System.out.println("Setter-Accessability-new: "+setter.isAccessible());
 						//invoke Setter
 						setter.invoke(cu,testDouble);
+					}else{
+						fail("Getter Typ nicht definiert");
 					}
 				}
 			}
