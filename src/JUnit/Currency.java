@@ -21,6 +21,11 @@ public class Currency {
         this.currencyName = currencyName;
         this.exchangeRate = exchangeRate;
     }
+    
+    public Currency(){
+    	;
+    }
+    
     public static Currency of(final Integer currencyID, final String currencyCharacter,
                               final String currencyISOCode, final String currencyName,
                               final Double exchangeRate) {
